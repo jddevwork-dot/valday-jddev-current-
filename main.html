@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Will You Be Mine</title>
+    <link rel="stylesheet" href="WYBM.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="JS/gsap.min.js"></script>
+    <script src="JS/WYBM.js" defer></script>
+	  <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  </head>
+  <body bgcolor=ffe6cd>
+    <div id="loadingScreen" class="screenLoading">
+      <h1>Loading something important, maybe ... </h1>
+    </div>
+    
+    <div id="choiceMenu" class="mainmenu" style="opacity: 0;">
+
+      <h1 id="choiceText" class="maintext"></h1>
+      
+      
+      <img id="choicegif" src="assets/smiley smiles final.gif" alt="" class="choicegif">
+
+     <div id="choicebox" class="choicegroup"> 
+       <button id="yesbutton" class="choicebutton">Yes</button>
+       <button id="nobutton" class="choicebutton">No</button>
+      </div> 
+    </div>
+    
+    <div id = "afterchoiceMenu" class="aftermenu" style="display: none;">  
+      <div id="heartContainer"></div>
+      <div class="aftercard">
+          <h1 id="aftercardh1"></h1>
+          <p id="aftercardp1"></p>
+          <img id="aftercardimg"  src="" alt="">
+          <video id="aftercardvid" src=""></video>
+          <button id="aftercardbutton"> Continue →  </button>
+      </div>
+    </div>
+  </body>
+</html>

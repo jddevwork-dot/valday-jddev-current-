@@ -1,0 +1,167 @@
+body{
+    padding : 25px;
+}
+
+.screenLoading{
+    color: #2b2b2b;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.mainmenu{
+    position: relative;
+    max-width: 390px;
+    margin: 0 0;
+    text-align: center;
+    align-self: center;
+
+    z-index: 0;
+    outline: 2px solid red;
+}
+
+.maintext{
+    font-size: clamp(36px, 9vw, 90px);
+    font-family:  Roboto;
+    color: white;
+    text-shadow: 0 0 25px white;
+    text-decoration-color: white;
+    text-align: center;
+}
+
+.choicegif{
+    padding-top: 25px;
+    display: block;
+    margin: 0px auto 0 auto;
+    width: 90vw;
+    max-width: 350px;
+    height: auto;
+    pointer-events: none;
+
+    outline: 2px solid yellow;
+}
+
+.choicegroup{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 50px;
+    outline: 2px solid blue;
+    z-index: 2;
+}
+.choicebutton{
+    position: relative;
+
+    width: 150px;
+    height: 40px;
+    
+    
+    border-radius: 45px;
+    border-color: #7B0323;
+    border-style: none;
+    background-color: #7B0323;
+   
+    color: white;
+    text-shadow: 0 0 8px white;
+    font-weight:bold;
+    font-size: clamp(18px, 15%, 28px);
+
+    z-index: 3;
+    outline: 2px solid green;
+}
+
+.aftermenu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.aftercard {
+  max-width: 320px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 230, 205, 0.95);
+  text-align: center;
+
+  outline: 2px solid orange;
+}
+
+.aftercard h1 {
+    font-size: clamp(36px, 9vw, 90px);
+    font-family:  Roboto;
+    color: white;
+    text-shadow: 0 0 25px white;
+    text-decoration-color: white;
+    text-align: center;
+}
+
+.aftercard p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #2b2b2b;
+}
+
+.aftercard button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #7B0323;
+  color: white;
+  text-shadow: 0 0 8px white;
+  font-weight: bold;
+
+  z-index: 3;
+}
+
+#heartContainer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+
+    outline: 2px solid black;
+}
+
+.heart {
+    position: absolute;
+    background-image: url("assets/Heart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: fall linear forwards;
+
+    outline: 2px solid black;
+}
+
+.heart::before,
+.heart::after {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
