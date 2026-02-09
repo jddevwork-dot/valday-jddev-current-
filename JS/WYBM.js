@@ -1,15 +1,7 @@
-const state = {
-    LOADING: "Loading",
-    START: "Start",
-    NO_1: "NoClicked1",
-    NO_2: "NoClicked2",
-    YES_IMMEDIATE: "YesClickedImmediately",
-    YES_AFTER_NO: "YesClickedAfterNo",
-    FINAL: "FinalReveal"
-}
-
 var typing = false
 var noCount = 0
+var yesClicked = false
+var saidnoalot = false;
 
 const assets = [
     "assets/smiley smiles final.gif",
@@ -18,7 +10,8 @@ const assets = [
     "assets/noo.gif",
     "assets/sad.gif",
     "assets/whytheNo.jpg",
-    "assets/Heart.png"
+    "assets/Heart.png",
+    "assets/excusmi.jpeg"
 ];
     
 
@@ -33,7 +26,6 @@ function preloadAssets(list) {
 }
 
 window.addEventListener("load", async () => {
-    let currentstate = state.LOADING
 
     await preloadAssets(assets);
     
@@ -52,7 +44,7 @@ function initChoiceMenu() {
     const choiceText = document.getElementById('choiceText');
     typeText(choiceText, "Will You Be My Valentine?")
     
-    choiceMenu.style.opacity = 1;  //ajklhsjkdh ajkh kja
+    choiceMenu.style.opacity = 1;  
 
     initButtons();
 }
@@ -66,115 +58,197 @@ function initButtons() {
 }
 
 function choiceFunction(choice) {
-    if (typing === true) {
-        return
-    }
-
+    const yesButton = document.getElementById('yesbutton');
+    const noButton = document.getElementById('nobutton'); 
     const gifChoice = document.getElementById('choicegif');
+    const choiceText = document.getElementById('choiceText');
+
     if (choice === "no") {
-
         noCount += 1;
-        console.log(noCount)
-        
-        const yesButton = document.getElementById('yesbutton');
-        const noButton = document.getElementById('nobutton'); 
 
-        
+        if (yesClicked === true) {
+            typeText(choiceText, "Damn... Okay")
+            gifChoice.src = "";
+            yesButton.style.opacity = 0;
+            yesButton.style.pointerEvents = "none";
+            noButton.style.opacity = 0;
+            noButton.style.pointerEvents = "none";
 
-        if (noCount === 1) {
-            gifChoice.src = "assets/cry gif.gif"
-            typeText(choiceText, "Why??? Did you click the wrong one?")
-            yesButton.style.transform = "scale(1.2)";
-            noButton.style.transform = "scale(0.8)";
+        } else if (noCount === 1) {
+            gifChoice.src = "assets/cry gif.gif";
+            typeText(choiceText, "Why??? Did you click the wrong one?");
+            yesButton.style.width = "180px";
+            yesButton.style.height = "50px";
+            yesButton.style.fontSize = "20px";
+            noButton.style.width = "120px";
+            noButton.style.height = "40px";
+            noButton.style.fontSize = "18px";
+            noButton.style.opacity = "1";
+            noButton.style.pointerEvents = "auto";
         } else if (noCount === 2) {
-            gifChoice.src = "assets/noo.gif"
-            typeText(choiceText, "Youre joking right?")
-            yesButton.style.transform = "scale(1.5)";
-            noButton.style.transform = "scale(0.6)";
+            gifChoice.src = "assets/noo.gif";
+            typeText(choiceText, "Youre joking right?");
+            yesButton.style.width = "220px";
+            yesButton.style.height = "60px";
+            yesButton.style.fontSize = "24px";
+            noButton.style.width = "100px";
+            noButton.style.height = "35px";
+            noButton.style.fontSize = "16px";
         } else if (noCount === 3) {
-            gifChoice.src = "assets/sad.gif"
-            typeText(choiceText, "Lets think this out pleasee")
-            yesButton.style.transform = "scale(2.5)";
-            noButton.style.transform = "scale(0.3)";
+            gifChoice.src = "assets/sad.gif";
+            typeText(choiceText, "Lets think this out pleasee");
+            yesButton.style.width = "260px";
+            yesButton.style.height = "70px";
+            yesButton.style.fontSize = "28px";
+            noButton.style.width = "80px";
+            noButton.style.height = "30px";
+            noButton.style.fontSize = "14px";
         } else if (noCount === 4) {
-            gifChoice.src = "assets/sad.gif"
-            typeText(choiceText, "Pleaseee")
-            yesButton.style.transform = "scale(5)";
-            noButton.style.transform = "scale(0)";
-            noButton.style.alignSelf = "center";
+            gifChoice.src = "assets/sad.gif";
+            typeText(choiceText, "Pleaseee");
+            yesButton.style.width = "280px";
+            yesButton.style.height = "90px";
+            yesButton.style.fontSize = "32px";
+            yesButton.textContent = "Fine";
+            noButton.style.opacity = "0";
+            noButton.style.pointerEvents = "none";
+            noButton.style.width = "0";
+            noButton.style.height = "0";
+            noButton.style.display = "none";
         } 
+    } else { 
+        yesCLicked = true
         
-    } else {
-        if (noCount >= 2) {
-            gifChoice.src = "assets/whytheNo.jpg"
-            typeText(choiceText, "Why did you say no so many times :(")
+        if (noCount === 4) {
+            typeText(choiceText, "Do you actually want to be my valentine?");
+            
+            yesButton.style.width = "150px";
+            yesButton.style.height = "40px";
+            yesButton.style.fontSize = "clamp(18px, 15%, 28px)";
+            yesButton.textContent = "Yes";
+
+            noButton.style.width = "150px";
+            noButton.style.height = "40px";
+            noButton.style.opacity = "1";
+            noButton.style.pointerEvents = "auto";
+            noButton.style.margin = "";
+            noButton.style.display = "inline-block";
+
+            noCount = 0;
+        } else if (noCount >= 2) {
+            gifChoice.src = "assets/whytheNo.jpg";
+            typeText(choiceText, "Why did you say no so many times :(");
+            saidnoalot = true;
+            beginValentine()
         } else {
-            gifChoice.src = "assets/pray1.gif"
-            typeText(choiceText, "Used to pray for times like this")
-        }
-
-        const choicebox = document.getElementById('choicebox');
-        choicebox.style.display = "none";
-        
-        setTimeout(() => {
-            typeText(choiceText, "Lets get into it")
-        }, 5000);
-        setTimeout(() => {
-                const choiceMenu = document.getElementById('choiceMenu');
-                choiceMenu.style.display = "none";
-                const afterchoiceMenu = document.getElementById('afterchoiceMenu');
-                afterchoiceMenu.style.display = "flex";
-                startValentine();
-        }, 10000);
-        
-    }
-};
-
-function startValentine() {
-    spawnHearts();
-
-    var cardNumber = 0
-    const cardHeading = document.getElementById('aftercardh1');
-    const cardParagraph = document.getElementById('aftercardp1');
-    const cardImage = document.getElementById('aftercardimg');
-    const cardVideo = document.getElementById('aftercardvid');
-    const cardButton = document.getElementById('aftercardbutton');
-    
-    typeText(cardHeading, "Heading 1")
-    typeText(cardParagraph, "Paragraph 1")
-
-    function OnCardBttnClick() {
-        cardNumber += 1;
-
-        if (cardNumber === 1) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 2) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 3) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 4) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 5) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 6) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 7) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
-        } else if (cardNumber === 8) {
-            typeText(cardHeading, toString(cardNumber))
-            typeText(cardParagraph, toString(cardNumber))
+            gifChoice.src = "assets/pray1.gif";
+            typeText(choiceText, "Used to pray for times like this");
+            beginValentine()
         }
     }
+}
 
-    cardButton.addEventListener('click', function() {OnCardBttnClick();})
-};
+function beginValentine() {
+    const choicebox = document.getElementById('choicebox');
+    choicebox.style.display = "none";
+            
+    setTimeout(() => {
+        typeText(choiceText, "Lets get into it")
+    }, 5000);
+    setTimeout(() => {
+        const choiceMenu = document.getElementById('choiceMenu');
+        choiceMenu.style.display = "none";
+        const afterchoiceMenu = document.getElementById('afterchoiceMenu');
+        afterchoiceMenu.style.display = "flex";
+        startValentine(saidnoalot);
+    }, 10000);
+}
+
+
+const cards = [
+  {
+    render(container) {
+      container.innerHTML = `<h1></h1><p></p>`;
+      const h1 = container.querySelector('h1');
+      const p = container.querySelector('p');
+      typeText(h1, "Hey");
+      typeText(p, "Im so happy you said yes, Heres a little something I made just for you.");
+    }
+  },
+  {
+    render(container) {
+      container.innerHTML = `<h1></h1><p></p>`;
+      const h1 = container.querySelector('h1');
+      const p = container.querySelector('p');
+      typeText(h1, "I miss you");
+      typeText(p, "You should totally message me once ur finished because i probably want to talk to you right about now.");
+    }
+  },
+  {
+    render(container) {
+     const videoId = "xzRSCI60kHU";
+        
+    container.innerHTML = `
+      <h1></h1>
+      <a 
+        href="https://www.youtube.com/watch?v=${videoId}" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="youtube-link"
+      >
+        <img 
+          src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" 
+          class="card-image"
+          alt="YouTube video preview"
+        >
+        <div class="play-overlay">▶</div>
+      </a>
+    `;
+      const h1 = container.querySelector('h1')
+      typeText(h1, "Made a little video talking about some things")
+    }
+  },
+  {
+    render(container) {
+      container.innerHTML = `<h1></h1><img src="assets/excusmi.jpeg" class="card-image"><p></p>`;
+      const h1 = container.querySelector('h1');
+      const p = container.querySelector('p')
+      typeText(h1, "Remember this?");
+      typeText(p, "I need to know what made you think i wouldnt do something for you")
+    }
+  },
+  
+  {
+    render(container) {
+      container.innerHTML = `<h1></h1><p></p>`;
+      const h1 = container.querySelector('h1');
+      const p = container.querySelector('p');
+      typeText(h1, "One last thing");
+      typeText(p, "You know how I like to conclude everything I do. Kc you are so amazing, i like you alot and there wont be any time with me around where you will feel otherwise. Hopefully you enjoyed the experience today.");
+    }
+  }
+];
+
+function startValentine(saidnoalot) {
+  if (!saidnoalot) spawnHearts();
+
+  let cardIndex = 0;
+  const cardContent = document.getElementById('cardContent');
+  const cardBtn = document.getElementById('cardBtn');
+
+  cards[cardIndex].render(cardContent);
+
+  function showNextCard() {
+    cardIndex += 1;
+    if (cardIndex >= (cards.length)) {
+      cardBtn.style.display = "none";
+      return;
+    }
+    cards[cardIndex].render(cardContent);
+  }
+
+  cardBtn.onclick = showNextCard;
+}
 
 function spawnHearts() {
     function spawnHeart() {
@@ -201,9 +275,8 @@ function spawnHearts() {
 
 
 
-function typeText(element, text, speed = 100, callback) {
-
-    typing = true
+function typeText(element, text, speed = 75, callback) {
+    setButtonsEnabled(false);
     element.textContent = "";
     let i = 0;
     const interval = setInterval(() => {
@@ -211,8 +284,13 @@ function typeText(element, text, speed = 100, callback) {
         i++;
         if (i >= text.length) {
             clearInterval(interval);
-            typing = false;
+            setButtonsEnabled(true);
             if (callback) callback();
         }
     }, speed);
 };
+
+function setButtonsEnabled(enabled) {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(btn => btn.disabled = !enabled);
+}
