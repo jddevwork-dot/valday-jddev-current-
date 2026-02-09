@@ -12,12 +12,10 @@ body{
 .mainmenu{
     position: relative;
     max-width: 390px;
-    margin: 0 0;
+    margin: 0 auto;
     text-align: center;
-    align-self: center;
-
+    padding: 0 16px;
     z-index: 0;
-    outline: 2px solid red;
 }
 
 .maintext{
@@ -32,13 +30,11 @@ body{
 .choicegif{
     padding-top: 25px;
     display: block;
-    margin: 0px auto 0 auto;
-    width: 90vw;
+    margin: 0 auto;
+    width: 100%;
     max-width: 350px;
     height: auto;
     pointer-events: none;
-
-    outline: 2px solid yellow;
 }
 
 .choicegroup{
@@ -48,10 +44,10 @@ body{
     align-items: center;
     gap: 100px;
     margin-top: 50px;
-    outline: 2px solid blue;
     z-index: 2;
 }
 .choicebutton{
+    flex: 1;
     position: relative;
 
     width: 150px;
@@ -69,7 +65,6 @@ body{
     font-size: clamp(18px, 15%, 28px);
 
     z-index: 3;
-    outline: 2px solid green;
 }
 
 .aftermenu {
@@ -88,7 +83,7 @@ body{
   background: rgba(255, 230, 205, 0.95);
   text-align: center;
 
-  outline: 2px solid orange;
+  outline: 2px solid #7B0323;
 }
 
 .aftercard h1 {
@@ -118,14 +113,20 @@ body{
   z-index: 3;
 }
 
+.card-image {
+  width: 100%;
+  max-width: 300px; /* adjust as needed */
+  height: auto;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+
 #heartContainer {
     position: fixed;
     inset: 0;
     pointer-events: none;
     overflow: hidden;
     z-index: 0;
-
-    outline: 2px solid black;
 }
 
 .heart {
@@ -135,8 +136,6 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     animation: fall linear forwards;
-
-    outline: 2px solid black;
 }
 
 .heart::before,
@@ -164,4 +163,8 @@ body{
   to {
     transform: translateY(110vh) rotate(360deg);
   }
+}
+
+.noclick {
+  pointer-events: none;
 }
