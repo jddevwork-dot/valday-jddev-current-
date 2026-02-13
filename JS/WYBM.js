@@ -216,7 +216,7 @@ const cards = [
       const h1 = container.querySelector('h1');
       const p = container.querySelector('p');
       typeText(h1, "One last thing");
-      typeText(p, "Very short and sweet website I made, hopefully next year i can add an image of us to it. You know how I like to conclude things properly. Kc you are so amazing, i care about you so deeply and as long as im around you wont have to question that. Got sum for you on Monday.");
+      typeText(p, "This is a very short and sweet website I made, hopefully next year i can add an image of us to it. I like to conclude things properly so I just want to say that, Kc you are so amazing, I care about you so deeply and as long as im around you will never have to question that. I got sum for you on Monday, and a hug may come included.");
     }
   }
 ];
@@ -286,6 +286,7 @@ function setButtonsEnabled(enabled) {
     const buttons = document.querySelectorAll("button");
     buttons.forEach(btn => btn.disabled = !enabled);
 }
+
 
 
 
