@@ -170,14 +170,14 @@ function beginValentine() {
             
     setTimeout(() => {
         typeText(choiceText, "Lets get into it")
-    }, 5000);
+    }, 4000);
     setTimeout(() => {
         const choiceMenu = document.getElementById('choiceMenu');
         choiceMenu.style.display = "none";
         const afterchoiceMenu = document.getElementById('afterchoiceMenu');
         afterchoiceMenu.style.display = "flex";
         startValentine(saidnoalot);
-    }, 10000);
+    }, 8000);
 }
 
 
@@ -197,31 +197,7 @@ const cards = [
       const h1 = container.querySelector('h1');
       const p = container.querySelector('p');
       typeText(h1, "I miss you");
-      typeText(p, "You should totally message me once ur finished because i probably want to talk to you right about now.");
-    }
-  },
-  {
-    render(container) {
-     const videoId = "xzRSCI60kHU";
-        
-    container.innerHTML = `
-      <h1></h1>
-      <a 
-        href="https://www.youtube.com/watch?v=${videoId}" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="youtube-link"
-      >
-        <img 
-          src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" 
-          class="card-image"
-          alt="YouTube video preview"
-        >
-        <div class="play-overlay">▶</div>
-      </a>
-    `;
-      const h1 = container.querySelector('h1')
-      typeText(h1, "Made a little video talking about some things")
+      typeText(p, "Ill be waiting to hear ur response once ur done here.");
     }
   },
   {
@@ -230,7 +206,7 @@ const cards = [
       const h1 = container.querySelector('h1');
       const p = container.querySelector('p')
       typeText(h1, "Remember this?");
-      typeText(p, "I need to know what made you think i wouldnt do something for you")
+      typeText(p, "What made you think i wouldnt do something for you")
     }
   },
   
@@ -240,7 +216,7 @@ const cards = [
       const h1 = container.querySelector('h1');
       const p = container.querySelector('p');
       typeText(h1, "One last thing");
-      typeText(p, "You know how I like to conclude everything I do. Kc you are so amazing, i like you alot and there wont be any time with me around where you will feel otherwise. Hopefully you enjoyed the experience today.");
+      typeText(p, "Very short and sweet website I made, hopefully next year i can add an image of us to it. You know how I like to conclude things properly. Kc you are so amazing, i care about you so deeply and as long as im around you wont have to question that. Got sum for you on Monday.");
     }
   }
 ];
@@ -310,5 +286,6 @@ function setButtonsEnabled(enabled) {
     const buttons = document.querySelectorAll("button");
     buttons.forEach(btn => btn.disabled = !enabled);
 }
+
 
 
