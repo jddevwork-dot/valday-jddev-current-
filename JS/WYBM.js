@@ -25,16 +25,31 @@ function preloadAssets(list) {
     );
 }
 
-window.addEventListener("load", async () => {
-    const loadingscreen = document.getElementById('loadingScreen');
+let loadingInterval = null;
 
-    
+function startLoadingDots() {
+    const loadingText = document.getElementById("loadingText");
+    let dots = 0;
+
+    loadingInterval = setInterval(() => {
+        dots = (dots + 1) % 4; // cycles 0 → 3
+        loadingText.textContent =
+            "Loading something " + ".".repeat(dots);
+    }, 500);
+}
+
+function stopLoadingDots() {
+    clearInterval(loadingInterval);
+}
+
+window.addEventListener("load", async () => {
+    startLoadingDots()
+    const loadingscreen = document.getElementById('loadingScreen');
     
     await preloadAssets(assets);
 
-
+    stopLoadingDots()
     
-    loadingscreen.style.transition =  "opacity";
     loadingscreen.style.opacity = 0;
     loadingscreen.style.display = "none";
     initChoiceMenu();
@@ -295,4 +310,5 @@ function setButtonsEnabled(enabled) {
     const buttons = document.querySelectorAll("button");
     buttons.forEach(btn => btn.disabled = !enabled);
 }
+
 
