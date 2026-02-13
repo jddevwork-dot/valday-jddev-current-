@@ -26,10 +26,11 @@ function preloadAssets(list) {
 }
 
 window.addEventListener("load", async () => {
-
-    await preloadAssets(assets);
-    
     const loadingscreen = document.getElementById('loadingScreen');
+
+    
+    
+    await preloadAssets(assets);
 
 
     
@@ -294,3 +295,4 @@ function setButtonsEnabled(enabled) {
     const buttons = document.querySelectorAll("button");
     buttons.forEach(btn => btn.disabled = !enabled);
 }
+
